@@ -1,0 +1,120 @@
+hacker earth day7 
+17/03/26
+Q. profile picture problem
+
+-> def main():
+    
+    L = int(input().strip())
+    
+
+    N = int(input().strip())
+    
+   
+    for _ in range(N):
+        W, H = map(int, input().split())
+        
+        if W < L or H < L:
+            print("UPLOAD ANOTHER")
+        elif W == H:
+            print("ACCEPTED")
+        else:
+            print("CROP IT")
+
+if __name__ == "__main__":
+    main()
+
+Q. Monk and rotation problem 
+
+-> T= int(input())
+
+   for x in range(T):
+       N, K = map(int, input().split())
+       A = list(map(int, input().split()))
+       K = K % N
+       result= A[-K:] + A[:-K]
+       print(*result)
+
+
+-> arr=[12,312,3,123,123]
+for i in range(10):
+  print(arr,end=" ")
+print(arr)  #[12,312,3,123,123]
+print(*arr) #12 312 3 123 123
+
+
+Q. Toggle String problem
+-> S = input()
+result = ""
+for ch in S:
+    if ch.islower():
+        result += ch.upper()
+    else: 
+        result += ch.lower()
+print(result)
+
+
+Q. Find the majority element :
+question : find the majority element ( element that appears more than n/2 times) in a array
+sample input : [3,3,4,2,4,4,2,4,4]
+expected output : majority element :4 
+-> def find_majority_element(arr):
+    candidate = None
+    count = 0
+
+    
+    for num in arr:
+        if count == 0:
+            candidate = num
+        if num == candidate:
+            count += 1
+        else:
+            count -= 1
+
+    
+    if arr.count(candidate) > len(arr) // 2:
+        return candidate
+    else:
+        return None
+
+
+
+arr = list(map(int, input("Enter elements separated by space: ").split()))
+
+result = find_majority_element(arr)
+
+if result is not None:
+    print("Majority element:", result)
+else:
+    print("No majority element found")
+
+
+
+Q. Product of array except self :
+Question : Given an array , return an array where each element is the product of all the elements in the array except itself
+logic : use two passes , one from left to right , and one from right  to left , calculate products
+sample inputs : [1,2,3,4]
+expected output : [24,12,8,6]
+
+-> def product_except_self(nums):
+    n = len(nums)
+    result = [1] * n
+
+ 
+    left_product = 1
+    for i in range(n):
+        result[i] = left_product
+        left_product *= nums[i]
+
+    
+    right_product = 1
+    for i in range(n - 1, -1, -1):
+        result[i] *= right_product
+        right_product *= nums[i]
+
+    return result
+
+
+
+nums = [1, 2, 3, 4]
+output = product_except_self(nums)
+print(output)  
